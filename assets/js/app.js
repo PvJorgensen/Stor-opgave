@@ -1,5 +1,6 @@
 
-import {getProductCategories} from "./modules/model/dummyjasonLib.js";
+import {buildCategoryNav,buildProductGallery,buildProductDetailView} from "./modules/view/viewCode.js";
+import {getAllProducts,getProductCategories,getProductsByCategory,getProductById} from "./modules/model/dummyjasonLib.js";
 
 
 let categoriesDisplayElement='categoriesNav';
@@ -10,17 +11,46 @@ initApp();
 
 
 function initApp(){
-// just to get things started ... happy coding :)
 
     getProductCategories().then((categories)=>{
       
-       console.log(categories);
+        buildCategoryNav(categories,categoriesDisplayElement);
 
     });
+
+        getAllProducts (3,3).then((products)=>{
+      
+        buildProductGallery(products,productDisplayElement,'Featured products');
+
+    });
+
     
 }
 
 
 
 // callBack functions remember hoisting to window eks: window._viewCallBacks = { categoriesCallBack,productCardCallback};
+window._viewCallBacks = {
+    categoriesCallBack,
+    productCardCallback
+};
 
+function categoriesCallBack(clickedCategory) {
+
+    getProductsByCategory(clickedCategory).then((products) => {
+
+        buildProductGallery(products, productDisplayElement, clickedCategory);
+
+    });
+
+}
+
+function productCardCallback(productId) {
+
+    getProductById(productId).then((product) => {
+
+        buildProductDetailView(product, productDisplayElement);
+
+    });
+
+}

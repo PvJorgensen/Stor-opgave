@@ -72,163 +72,144 @@ if error no return and error in log
 */
 
 /* API endpoints */
-let apiUserEndpoint='https://dummyjson.com/users';
-let apiProductEndpoint='https://dummyjson.com/products';
+let apiUserEndpoint = 'https://dummyjson.com/users';
+let apiProductEndpoint = 'https://dummyjson.com/products';
 
+// User functions
+// -------------------------------------------------------------------
+export function getAllUsers(myLimit, mySkip) {
 
-
-// User functions -------------------------------------------------------------------
-export  function getAllUsers(myLimit,mySkip){
-
-    let apiUrl =`${apiUserEndpoint}?limit=${myLimit}&skip=${mySkip}`;
+    let apiUrl = `${apiUserEndpoint}?limit=${myLimit}&skip=${mySkip}`;
     return fetch(apiUrl)
-    .then((response) => {
-     
-        // error checking
-      if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.status}`);
-      }
-  
-      return response.json(); // Parse the response body as JSON
-    })
-  
-    .then((data) => {
-      // send data on to view functions
-      return data.users;
-    })
-  
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+        .then((response) => {
+
+            // error checking
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.status}`);
+            }
+
+            return response.json(); // Parse the response body as JSON
+        })
+        .then((data) => {
+            // send data on to view functions
+            return data.users;
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
 }
 
+export function getUserById(myId) {
 
-export  function getUserById(myId){
+    let apiUrl = `${apiUserEndpoint}/${myId}`;
 
-  let apiUrl =`${apiUserEndpoint}/${myId}`;
-  
-  return fetch(apiUrl)
-  .then((response) => {
-   
-      // error checking
-    if (!response.ok) {
-      throw new Error(`Network response was not ok: ${response.status}`);
-    }
+    return fetch(apiUrl)
+        .then((response) => {
 
-    return response.json(); // Parse the response body as JSON
-  })
+            // error checking
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.status}`);
+            }
 
-  .then((data) => {
-    // send data on to view functions
-    return data;
-  })
-
-  .catch((error) => {
-    console.error("Error:", error);
-  });
+            return response.json(); // Parse the response body as JSON
+        })
+        .then((data) => {
+            // send data on to view functions
+            return data;
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
 }
 
-// product functions -------------------------------------------------------------------
-export  function getAllProducts(myLimit,mySkip){
+// product functions
+// -------------------------------------------------------------------
+export function getAllProducts(myLimit, mySkip) {
 
-  let apiUrl =`${apiProductEndpoint}?limit=${myLimit}&skip=${mySkip}`;
-  return fetch(apiUrl)
-  .then((response) => {
-   
-      // error checking
-    if (!response.ok) {
-      throw new Error(`Network response was not ok: ${response.status}`);
-    }
+    let apiUrl = `${apiProductEndpoint}?limit=${myLimit}&skip=${mySkip}`;
+    return fetch(apiUrl)
+        .then((response) => {
 
-    return response.json(); // Parse the response body as JSON
-  })
+            // error checking
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.status}`);
+            }
 
-  .then((data) => {
-    // send data on to view functions
-    return data.products;
-  })
-
-  .catch((error) => {
-    console.error("Error:", error);
-  });
+            return response.json(); // Parse the response body as JSON
+        })
+        .then((data) => {
+            // send data on to view functions
+            return data.products;
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
 }
 
+export function getProductCategories() {
 
-export  function getProductCategories(){
+    let apiUrl = `${apiProductEndpoint}/categories`;
+    return fetch(apiUrl)
+        .then((response) => {
 
-  let apiUrl =`${apiProductEndpoint}/categories`;
-  return fetch(apiUrl)
-  .then((response) => {
-   
-      // error checking
-    if (!response.ok) {
-      throw new Error(`Network response was not ok: ${response.status}`);
-    }
+            // error checking
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.status}`);
+            }
 
-    return response.json(); // Parse the response body as JSON
-  })
-
-  .then((data) => {
-    // send data on to view functions
-    return data;
-  })
-
-  .catch((error) => {
-    console.error("Error:", error);
-  });
+            return response.json(); // Parse the response body as JSON
+        })
+        .then((data) => {
+            // send data on to view functions
+            return data;
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
 }
 
+export function getProductsByCategory(category) {
 
+    let apiUrl = `${apiProductEndpoint}/category/${category}?limit=0`;
+    return fetch(apiUrl)
+        .then((response) => {
 
+            // error checking
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.status}`);
+            }
 
-
-export  function getProductsByCategory(category){
-
-  let apiUrl =`${apiProductEndpoint}/category/${category}?limit=0`;
-  return fetch(apiUrl)
-  .then((response) => {
-   
-      // error checking
-    if (!response.ok) {
-      throw new Error(`Network response was not ok: ${response.status}`);
-    }
-
-    return response.json(); // Parse the response body as JSON
-  })
-
-  .then((data) => {
-    // send data on to view functions
-    return data.products;
-  })
-
-  .catch((error) => {
-    console.error("Error:", error);
-  });
+            return response.json(); // Parse the response body as JSON
+        })
+        .then((data) => {
+            // send data on to view functions
+            return data.products;
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
 }
 
+export function getProductById(id) {
 
-export  function getProductById(id){
+    let apiUrl = `${apiProductEndpoint}/${id}`;
+    return fetch(apiUrl)
+        .then((response) => {
 
-  let apiUrl =`${apiProductEndpoint}/${id}`;
-  return fetch(apiUrl)
-  .then((response) => {
-   
-      // error checking
-    if (!response.ok) {
-      throw new Error(`Network response was not ok: ${response.status}`);
-    }
+            // error checking
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.status}`);
+            }
 
-    return response.json(); // Parse the response body as JSON
-  })
-
-  .then((data) => {
-    // send data on to view functions
-    return data;
-  })
-
-  .catch((error) => {
-    console.error("Error:", error);
-  });
+            return response.json(); // Parse the response body as JSON
+        })
+        .then((data) => {
+            // send data on to view functions
+            return data;
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
 }
 
 

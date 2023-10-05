@@ -1,4 +1,42 @@
+export function buildCategoryNav(myCategories, displayElement) {
+    let myDisplayElement = document.getElementById(displayElement);
+    myDisplayElement.innerHTML = "";
 
+    myCategories.forEach((element) => {
+        myDisplayElement.innerHTML += `<button onclick="window._viewCallBacks.categoriesCallBack('${element}')">${element}</button>`;
+    });
+}
+
+export function buildProductGallery(myProducts, displayElementId, headline) {
+
+    let displayElement = document.getElementById(displayElementId);
+
+    let displayHtml = `<h2>${headline}</h2><section>`;
+    myProducts.forEach((product) => {
+        displayHtml += buildCard(product);
+    });
+    displayHtml += '</section>'
+
+    displayElement.innerHTML = displayHtml;
+}
+
+function buildCard(myCardData) {
+
+    return `<article class="productCard"><h3>${myCardData.title}</h3><img onclick="window._viewCallBacks.productCardCallback('${myCardData.id}')"  src="${myCardData.thumbnail}"<p>Price: ${myCardData.price}</p></article>`;
+}
+
+export function buildProductDetailView(productData, displayElementId) {
+    let displayElement = document.getElementById(displayElementId);
+
+    displayElement.innerHTML = `<article><h3>${productData
+        .title}</h3><img  src="${productData
+        .images[1]}"<p>Price: ${productData
+        .price}</p><p>${productData
+        .description}</p><button onclick="window._viewCallBacks.categoriesCallBack('${productData
+        .category}')">go to ${productData
+        .category} </button></article>`;
+
+}
 
 /*  product data structure reference
 brand: "Huawei"
