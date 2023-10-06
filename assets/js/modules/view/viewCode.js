@@ -28,15 +28,18 @@ function buildCard(myCardData) {
 export function buildProductDetailView(productData, displayElementId) {
     let displayElement = document.getElementById(displayElementId);
 
-    displayElement.innerHTML = `<article><h3>${productData
-        .title}</h3><img  src="${productData
-        .images[1]}"<p>Price: ${productData
-        .price}</p><p>${productData
-        .description}</p><button onclick="window._viewCallBacks.categoriesCallBack('${productData
-        .category}')">go to ${productData
-        .category} </button></article>`;
-
+    displayElement.innerHTML = `<article>
+        <h3>${productData.title}</h3>
+        <img src="${productData.images[1]}" alt="${productData.title}" />
+        <p>Price: ${productData.price}</p>
+        <p>${productData.description}</p>
+        <button onclick="addToCart(${productData.id})">Add to Cart</button>
+        <button onclick="window._viewCallBacks.categoriesCallBack('${productData.category}')">Go to ${productData.category}</button>
+    </article>`;
 }
+
+
+
 
 /*  product data structure reference
 brand: "Huawei"
