@@ -51,7 +51,7 @@ footer{
 
 #categoriesNav button {
     width: 5%;
-    margin: 1px;
+    margin-right: 2px;
     border-radius: 5px;
     border: 1px solid grey;
 }
