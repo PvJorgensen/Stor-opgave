@@ -1,4 +1,7 @@
-
+body {
+    margin: 0;
+    padding: 0;
+}
 header{
     width: 100%;
     color: white;
@@ -16,6 +19,8 @@ footer{
     background-color: rgb(58, 58, 58);
     height: 4rem;
     padding: 0.7rem; 
+    margin-top: 16em;
+    
 }
 
 /*products*/
@@ -31,12 +36,28 @@ footer{
     display: inline-block;
     border: 2px solid black;
     border-radius: 1em;
-  width: 20em;
-margin: 1em;
-  
+    width: 20em;
+    margin-left: 8%;
 }
+
 
 .productCard img{
   
     width: 90%;
+}
+
+h2{
+    margin-left: 8%;
+}
+
+#categoriesNav {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+
+}
+
+#categoriesNav button {
+    display: flex;
+    height: 3.78vh;
 }
